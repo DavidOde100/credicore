@@ -5,26 +5,12 @@ import TotalBalanceBox from '@/components/TotalBalanceBox';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-// const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
-//   const currentPage = Number(page as string) || 1;
-//   const loggedIn = await getLoggedInUser();
-//   const accounts = await getAccounts({ 
-//     userId: loggedIn.$id
-//   })
-
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  
-  try {
-    const loggedIn = await getLoggedInUser();
-    
-    if (!loggedIn) {
-      throw new Error('User is not logged in.');
-    }
-
-    const accounts = await getAccounts({ 
-      userId: loggedIn.$id
-    });
+  const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ 
+    userId: loggedIn.$id
+  })
 
   if(!accounts) return;
   
